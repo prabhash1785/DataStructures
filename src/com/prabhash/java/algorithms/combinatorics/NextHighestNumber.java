@@ -98,7 +98,7 @@ public class NextHighestNumber {
 		
 		System.out.println(nextHighestNumber.findNextBiggestNumber(123));
 		
-		System.out.println(nextHighestNumber.findNextBiggestNumber(87));
+		System.out.println(nextHighestNumber.findNextBiggestNumber(87)); //TODO - fix array out of bound exception
 
 	}
 
