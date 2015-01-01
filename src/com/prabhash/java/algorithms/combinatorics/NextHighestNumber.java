@@ -40,7 +40,7 @@ public class NextHighestNumber {
 	    while(firstLessPointer<len&&(orgNumbers[firstLessPointer]>orgNumbers[ firstLessPointer-1 ])){
 	        firstLessPointer++;
 	    }
-	     if(firstLessPointer==len-1&&orgNumbers[len-1]>=orgNumbers[len-2]){
+	     if(firstLessPointer>=len-1&&orgNumbers[len-1]>=orgNumbers[len-2]){
 	         //all number is in sorted order like 4321, no answer for it, return original
 	         return input;
 	     }
@@ -86,19 +86,103 @@ public class NextHighestNumber {
 	     return  result;
 
 	}
+	
+	/*
+	 * find the next higher number containing the same set of digits.
+	 * 
+	 */
+	public static int findNextBiggerNumber(int num) {
+		
+		if(num < 12) {
+			return num;
+		}
+		
+		int output = 0;
+	
+		List<Integer> list = new ArrayList<Integer>();
+		
+		int tempNum = num;
+		
+		while(tempNum > 0) {
+			list.add(tempNum % 10);
+			
+			tempNum = tempNum / 10;
+		}
+		
+		int[] array = new int[list.size()]; //stores the original number in form of array
+		
+		for(int i = list.size() - 1, j = 0; i >= 0; i--, j++) {
+			array[j] = list.get(i);
+		}
+		
+		for(int i = 0; i < array.length; i++) {
+			System.out.println(array[i]);
+		}
+		
+		int loc = array.length - 1;
+		
+		int k = array.length - 1;
+		
+		while(k > 0 && array[k - 1] > array[k]) {
+			loc--;
+			k--;
+		}
+		
+		//if the number is already in descending order, return the original number
+		if(loc == 0) {
+			return  num;
+		}
+		
+		int xPos = loc - 1;
+		int x = array[xPos]; //number to be placed in right side portion of array
+		
+		//find the smallest digit larger than x to the right
+		int digitJustBiggerThanX = array[loc];
+		int digitJustBiggerThanXPos = loc;
+		int diff = array[loc] - x;
+		
+		for(int m = loc + 1; m < array.length; m++) {
+			int subtraction = array[m] - x;
+			
+			if(subtraction > 0 && diff > subtraction) {
+				diff = subtraction;
+				digitJustBiggerThanX = array[m];
+				digitJustBiggerThanXPos = m;
+			}
+		}
+		
+		//swap the positions of x and digit just greater than x
+		int temp = x;
+		array[xPos] = array[digitJustBiggerThanXPos];
+		array[digitJustBiggerThanXPos] = temp;
+		
+		//TODO: Sort the digits to the right of digitJustBiggerThanX
+		
+		//create the final number from array
+		for(int i = array.length - 1, j = 0; i >= 0; i--, j++) {
+			output += array[i] * Math.pow(10, j);
+		}
+			
+		return output;
+	
+	}
 
 
 	public static void main(String[] args) {
 		
 		NextHighestNumber nextHighestNumber = new NextHighestNumber();
 		
-		System.out.println(nextHighestNumber.findNextBiggestNumber(47));
+//		System.out.println(nextHighestNumber.findNextBiggestNumber(47));
+//		
+//		System.out.println(nextHighestNumber.findNextBiggestNumber(67));
+//		
+//		System.out.println(nextHighestNumber.findNextBiggestNumber(123));
+//		
+//		System.out.println(nextHighestNumber.findNextBiggestNumber(87)); //TODO - fix array out of bound exception
 		
-		System.out.println(nextHighestNumber.findNextBiggestNumber(67));
-		
-		System.out.println(nextHighestNumber.findNextBiggestNumber(123));
-		
-		System.out.println(nextHighestNumber.findNextBiggestNumber(87)); //TODO - fix array out of bound exception
+		//int result = findNextBiggerNumber(87); //87
+		int result = findNextBiggerNumber(38276); //38672
+		System.out.println("Result is: " + result);
 
 	}
 
