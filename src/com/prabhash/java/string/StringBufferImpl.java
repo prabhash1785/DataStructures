@@ -31,10 +31,12 @@ public class StringBufferImpl {
 		if(newLength <= 0) {
 			throw new ArrayIndexOutOfBoundsException();
 		}
-		int k = Math.min(newLength, 2 * capacity);
+//		int k = Math.min(newLength, 2 * capacity); //this technique would need more often stringbuffer copy which is costly
+		int k = 2 * capacity; //Simple update capacity two times every time more memory is needed
 		char[] dest = new char[k];
-		System.arraycopy(buffer, 0, dest, 0, k);
-		buffer = dest; //after expanding the array, point buffer to new array 
+		System.arraycopy(buffer, 0, dest, 0, length);
+		buffer = dest; //after expanding the array, point buffer to new array
+		capacity = k; //update capacity
 	}
 	
 	public StringBufferImpl append(String s) {
@@ -62,7 +64,7 @@ public class StringBufferImpl {
 		
 		StringBufferImpl stringBuffer = new StringBufferImpl();
 		stringBuffer.append("Amber");
-		stringBuffer.append("Ricky");
+		stringBuffer.append("Rickywwwwwwwwwwwwwwwwwww").append("Maximus");
 		
 		System.out.println("Output: " + stringBuffer.toString());
 		
