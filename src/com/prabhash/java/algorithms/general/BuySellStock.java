@@ -73,24 +73,24 @@ public class BuySellStock {
 			return 0;
 		}
 		 
-		int min = 0; //min index
+		int minIndex = 0; //min index
 		int maxDiff = 0;
-		int buy = 0; //Minimum Price Index to buy the Stock
-		int sell = 0; //Highest Price Index after Minimum Price Index to sell the stock for HIGHEST Profit
+		int buyPriceIndex = 0; //Minimum Price Index to buy the Stock
+		int sellPriceIndex = 0; //Highest Price Index after Minimum Price Index to sell the stock for HIGHEST Profit
 		
 		for(int i = 0; i < size; i++) {
-			if(stockPrice[i] < stockPrice[min]) {
-				min = i;
+			if(stockPrice[i] < stockPrice[minIndex]) {
+				minIndex = i;
 			}
-			int diff = stockPrice[i] - stockPrice[min];
+			int diff = stockPrice[i] - stockPrice[minIndex];
 			if(diff > maxDiff) {
-				buy = min;
-				sell = i;
+				buyPriceIndex = minIndex;
+				sellPriceIndex = i;
 				maxDiff = diff;
 			}
 		}
 		
-		System.out.println("\nMax = " + stockPrice[sell] + " :: Min = " + stockPrice[buy]);
+		System.out.println("\nMax = " + stockPrice[sellPriceIndex] + " :: Min = " + stockPrice[buyPriceIndex]);
 		return maxDiff;
 	}
 	
