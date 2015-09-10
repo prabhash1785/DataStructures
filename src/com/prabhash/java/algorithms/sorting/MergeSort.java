@@ -24,7 +24,7 @@ public class MergeSort {
   
   public static void main(String[] args) {
 	  //int[] a = {12, 2, 17, 1, 5, 10};
-	  int[] a = new int[] {6, 5, 3, 1, 8, 7, 2, 4};
+	  int[] a = new int[] {6, 5, 3, 1, 8, 7, 2, 4, 45, 12, 67, 39, 89};
 	  new MergeSort().sort(a);
   }
 
@@ -83,6 +83,13 @@ public class MergeSort {
       numbers[k] = helper[i];
       k++;
       i++;
+    }
+    
+    // Copy the rest of the right side of the array into the target array
+    while (j <= high) {
+      numbers[k] = helper[j];
+      k++;
+      j++;
     }
 
   }
