@@ -40,8 +40,8 @@ public class QuickSort {
 			printArray(a, low, pivot - 1);
 			System.out.println();
 			
-			qSort(a, pivot + 1, high);
-			printArray(a, pivot+1, high);
+			qSort(a, pivot, high);
+			printArray(a, pivot, high);
 			System.out.println();
 		}
 				
@@ -90,7 +90,8 @@ public class QuickSort {
 	
 	
 	public static void main(String[] args) {
-		int[] array = {12, 5, 23, 4, 18, 1};
+		//int[] array = {12, 5, 23, 4, 18, 1};
+		int[] array = {18, 14, 4, 9, 12, 7};
 		
 		System.out.println("Here is the original array:");
 		printArray(array, 0, array.length - 1);
