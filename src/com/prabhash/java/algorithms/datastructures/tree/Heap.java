@@ -17,16 +17,24 @@ import java.util.Random;
  * 	- Parent = i / 2
  *  - Left Child = 2 * i
  *  - Right Child = (2 * i) + 1
+ *  
  * Heap Implementation: Array is a preferred way to implement heap compared to Linked List method of representing as a regular
  * tree because Heap is a complete Binary tree and it's filled from left to right so array is more memory efficient as we don't
  * have to save pointers for nodes and also looking up elements using index in array is faster.
+ * 
+ * Any ordinary array can be be visualized as a Heap. What distinguishes an ordinary array from a special property heap array are the properties of
+ * Max-Heap and Min-Heap.
+ * 
  * 2 kind of Heaps:
  * 	- Max Heap: A[Parent(i)] >= A[i]
  * 	- Min Heap: A[Parent(i)] <= A[i]
+ * 
  * Application of Heap Data Structure:
  *  - Heap Sort (Max Heap is used)
  *  - Priority Queue (Min Heap is used)
  *  - Dijkstra Algorithm to find the shortest path
+ *  
+ *  Time Complexity of Heapify a Max-Heap: O(log n)
  *   
  */
 public class Heap {
@@ -139,6 +147,7 @@ public class Heap {
 	public void createHeap(int[] a) {
 		int heapSize = a.length;
 		
+		// We are staring at heapSize / 2 because leaves are by default heapified so it's an optimization
 		for(int k = heapSize / 2; k >= 0; k--) {
 			maxHeapify(a, k);
 		}
@@ -146,12 +155,12 @@ public class Heap {
 	}
 	
 	public void insertElement(int value) {
-		System.out.println("..Capacity: " + capacity + " heap size: " + heapSize);
+		System.out.println("\n..Capacity: " + capacity + " ::: heap size: " + heapSize);
 		if(heapSize < capacity) {
 			heap[heapSize++] = value;			
 		} else {
 			resizeArray();
-			System.out.println("---Capacity: " + capacity + " heap size: " + heapSize);
+			System.out.println("\n---Capacity: " + capacity + " ::: heap size: " + heapSize);
 			heap[heapSize++] = value;
 		}
 		System.out.println("Element to be heafied: " + heap[heapSize - 1]);
