@@ -126,10 +126,8 @@ public class LevelOrderTree {
 				System.out.println("\n");
 				leftToRight = !leftToRight; //Inverting the flag for zig zag output
 				//Swap the stacks
-				Stack<Node> tempStack = new Stack<Node>(); //temp Stack is empty so after swap, Stack2 will become empty
-				tempStack = stack1;
 				stack1 = stack2;
-				stack2 = tempStack;
+				stack2 = new Stack<Node>();
 				
 			}
 			
