@@ -32,7 +32,7 @@ public class NextHighestNumber {
 	    for(int i=0;i<len;i++){
 	        orgNumbers[i ]  =  orgNumbersList.get(i).intValue();
 	    }
-	    //step 2 find the first digital less than the digital right to it
+	    //step 2 find the first digit less than the digit right to it
 	    // this step is O(n)
 
 
@@ -45,7 +45,7 @@ public class NextHighestNumber {
 	         return input;
 	     }
 
-	    //when step 2 step finished, firstLessPointer  pointing to number 5
+	    //when step 2 finished, firstLessPointer  pointing to number 5
 
 	     //step 3 fristLessPointer found, need to find  to  first number less than it  from low digital in the number
 	    //This step is O(n)

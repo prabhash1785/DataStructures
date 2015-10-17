@@ -38,7 +38,7 @@ public class ThreeSum {
 	
 	/*
 	 * First sort the given array.
-	 * For each pair of numbers a[i] and a[j], bnary search for -(a[i] + a[j])
+	 * For each pair of numbers a[i] and a[j], binary search for -(a[i] + a[j])
 	 * Time Complexity: O((n ^ 2) log n) 
 	 */
 	public static void threeSumUsingBinarySearch(int[] c) {

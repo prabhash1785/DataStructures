@@ -1,7 +1,5 @@
 package com.prabhash.java.practice.algorithms;
 
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-
 public class BinarySearchTree {
 	
 	private Node root;
