@@ -4,6 +4,7 @@
  * n = 5
  * v = [4, 2, 5, 1]
  * The result is 3.
+ * 
  * @Twitter Interview
  * @author Prabhash Rathore
  */
@@ -38,7 +39,9 @@ public class FindMissingNumber {
 	 * Sum of first n numbers = n(n + 1)/2
 	 * Take sum of given numbers in the array using a for loop..
 	 * Missing number should be the difference of these sums.
+	 * 
 	 * Warning: If n is an high order number then there is a chance of overflow while taking the sum of these numbers.
+	 * 
 	 * Time Complexity = O(n)
 	 * 
 	 */
@@ -57,8 +60,8 @@ public class FindMissingNumber {
 	
 	/**
 	 * Method 3 - This is the most efficient method using an XOR (lower level operation)
-	 * 1.) XOR all no.s from 1 to n.let XOR be X
-	 * 2) .XOR all array elements .let say XOR be Y
+	 * 1.) XOR all numbers from 1 to n. Let XOR be X
+	 * 2) XOR all array elements. Lets say XOR be Y
 	 * 3) X XOR Y is our answer
 	 * Time Complexity: O(n)
 	 * No Space constraints, n can be any number in this case.
@@ -68,10 +71,14 @@ public class FindMissingNumber {
 		if(a != null) {
 			int x = 0, y = 0;
 			int i, size = a.length;
+			
+			// XOR all numbers in the array
 			for(i = 0; i < size; i++) {
 				x = x ^ a[i];
 				System.out.println("x = " + x);
 			}
+			
+			// XOR all the contiguous numbers from 1 to n
 			for(i = 1; i <= size + 1; i++) {
 				y ^= i;
 				System.out.println("y = " + y);
