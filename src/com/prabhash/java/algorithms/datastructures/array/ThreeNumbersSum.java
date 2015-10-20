@@ -37,7 +37,7 @@ public class ThreeNumbersSum {
 	
 	/**
 	 * This method uses Binary search to improve the time complexity of algorithm.
-	 * Time Complexity: O(n ^ 2 (log n) )
+	 * Time Complexity: O((n ^ 2) (log n) )
 	 * 
 	 */
 	public static void sumUsingBinarySearch(int[] a) {
