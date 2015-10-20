@@ -6,6 +6,7 @@ public class MaxSumSubArray {
 	
 	/**
 	 * Solving this problem using Divide and Conquer technique
+	 * 
 	 * Time complexity is O(n)
 	 * @author Prabhash Rathore
 	 */
@@ -16,8 +17,8 @@ public class MaxSumSubArray {
 		int maxLeft = -1;
 				
 		int mid = a.length / 2;
-		System.out.println("Original size of array: " + a.length);
-		System.out.println("Here is the value of mid point: " + mid);
+		System.out.println("\n\nOriginal size of array: " + a.length);
+		System.out.println("Here is the value of mid point: " + a[mid]);
 		
 		for(int i = mid; i >= 0; i--) {
 			sum += a[i];
@@ -42,13 +43,20 @@ public class MaxSumSubArray {
 		int totalSum = leftSum + rightSum;
 		
 		System.out.println("Max value of sum is: " + totalSum);
-		System.out.println("Indixes for this sum: i = " + maxLeft + " and j = " + maxRight);
+		System.out.println("Indices for this sum: i = " + maxLeft + " and j = " + maxRight);
 		
 	}
 	
 	public static void main(String[] args) {
 		
-		new MaxSumSubArray().findMaxSum();
+		MaxSumSubArray maxSumSubArray = new MaxSumSubArray();
+		
+		System.out.println("Input Array is:");
+		for(int i : maxSumSubArray.a) {
+			System.out.print(i + " ");
+		}
+		
+		maxSumSubArray.findMaxSum();
 
 	}
 
