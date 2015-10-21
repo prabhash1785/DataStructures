@@ -11,10 +11,10 @@ public class MaxSumSubArray {
 	 * @author Prabhash Rathore
 	 */
 	public void findMaxSum() {
-		int leftSum = -1;
+		int leftMaxSum = -1;
 		int sum = 0;
 		
-		int maxLeft = -1;
+		int maxLeftIndex = -1;
 				
 		int mid = a.length / 2;
 		System.out.println("\n\nOriginal size of array: " + a.length);
@@ -22,28 +22,28 @@ public class MaxSumSubArray {
 		
 		for(int i = mid; i >= 0; i--) {
 			sum += a[i];
-			if(sum > leftSum)
-				leftSum = sum;
-				maxLeft = i;
+			if(sum > leftMaxSum)
+				leftMaxSum = sum;
+				maxLeftIndex = i;
 		}
 		
-		int rightSum = -1;
+		int rightMaxSum = -1;
 		sum = 0;
 		
-		int maxRight = -1;
+		int maxRightIndex = -1;
 		
 		for(int i = mid+1; i < a.length; i++) {
 			sum += a[i];
-			if(sum > rightSum) {
-				rightSum = sum;
-				maxRight = i;
+			if(sum > rightMaxSum) {
+				rightMaxSum = sum;
+				maxRightIndex = i;
 			}
 		}
 		
-		int totalSum = leftSum + rightSum;
+		int totalSum = leftMaxSum + rightMaxSum;
 		
 		System.out.println("Max value of sum is: " + totalSum);
-		System.out.println("Indices for this sum: i = " + maxLeft + " and j = " + maxRight);
+		System.out.println("Indices for this sum: i = " + maxLeftIndex + " and j = " + maxRightIndex);
 		
 	}
 	
