@@ -97,7 +97,7 @@ public class BinarySearchTree {
 	 * 
 	 * Design:
 	 * If root is null -> return null;
-	 * If data < root.data -> go to left sub-tre
+	 * If data < root.data -> go to left sub-tree
 	 * If data > root.data -> go to right sub-tree
 	 * If data == root.data:
 	 * 		- If root has both left and right child then replace root with the value of max node in left subtree and then recursiveley delete max node in left sub tree
