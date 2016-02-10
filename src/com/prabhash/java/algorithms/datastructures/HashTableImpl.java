@@ -1,5 +1,13 @@
 package com.prabhash.java.algorithms.datastructures;
 
+/**
+ * A simple implementation of a Map.
+ * 
+ * This uses LinkedList to deal with collisions.
+ * 
+ * @author prrathore
+ *
+ */
 public class HashTableImpl {
 
 	private HashTableNode[] hashTable;
@@ -18,12 +26,11 @@ public class HashTableImpl {
 			index += s.charAt(i);
 		}
 		index = index % Max_SIZE;
-		System.out.println("Key is: " + k + " hash value is: " + index);
+		System.out.println("Key = " + k + " :::: hash value = " + index);
 		return index;
 	}
 	
 	public int size() {
-		System.out.println("Here is the size of hashtable: " + length);
 		return length;
 	}
 	
@@ -37,71 +44,51 @@ public class HashTableImpl {
 		return flag;
 	}
 	
-	public void displayElements() {
-		for(int i = 0; i < Max_SIZE; i++) {
-			HashTableNode temp = hashTable[i];
-			if(temp == null) {
-				System.out.println("Index: " + i + " Key: " + null + " Data: " + null);
-			} else {
-				while(temp != null) {
-					if(temp != null) {
-						System.out.println("Index " + i + " Key: " + temp.getKey() + " Data: " + temp.getData());
-					}
-					temp = temp.getNextNode();
-				}
-			}
-			
-		}
-	}
-	
-	public static void main(String[] args) {
-		HashTableImpl hashTableImpl = new HashTableImpl();
-		hashTableImpl.addElement("Fruit", "Apple");
-		hashTableImpl.addElement("Planet", "Earth");
-		hashTableImpl.addElement("Fruit", "Mango");
-		hashTableImpl.addElement("Company", "PayPal");
-		hashTableImpl.addElement("Country", "India");
-		hashTableImpl.addElement("Company", "Amazon");
-		hashTableImpl.addElement("Country", "US");
-		
-		hashTableImpl.displayElements();
-	}
-	
 	public void addElement(Object key, Object value) {		
 		
 		if(key == null || value == null) {
 			System.out.println("ERROR: Either key or value is null..");
 		}
 		
+		length++; // increase the size of HashMap elements
+		
 		int index = hash(key);
 		
-		HashTableNode addNode = new HashTableNode();
-		addNode.setKey(key);
-		addNode.setData(value);
+		HashTableNode newNode = new HashTableNode();
+		newNode.setKey(key);
+		newNode.setData(value);
 		
 		if(hashTable[index] == null) {
-			hashTable[index] = addNode;
+			
+			hashTable[index] = newNode;
 		} else {
+			
 			HashTableNode tempNode = hashTable[index];
-			while(tempNode != null) {
-				if(tempNode == null)
-					tempNode = addNode;
+			while(tempNode.getNextNode() != null) {
 				tempNode = tempNode.getNextNode();
 			}
+			
+			tempNode.setNextNode(newNode);
 			
 		}
 		
 	}
 	
-	/*public HashTableNode deleteElement() {
-				
-		
-		return;
+	public void displayElements() {
+		for(int i = 0; i < Max_SIZE; i++) {
+			
+			HashTableNode temp = hashTable[i];
+			
+			if(temp != null) {
+				while(temp != null) {
+					if(temp != null) {
+						System.out.println("Index " + i + " Key: " + temp.getKey() + " Data: " + temp.getData());
+					}
+					temp = temp.getNextNode();
+				}
+			} 
+		}
 	}
-	
-	public HashTableNode search(Object 0) {
-		
-	}*/
 	
 	private class HashTableNode {
 		private Object key;
@@ -156,6 +143,19 @@ public class HashTableImpl {
 		
 	}
 	
-	
+	public static void main(String[] args) {
+		HashTableImpl hashTableImpl = new HashTableImpl();
+		hashTableImpl.addElement("Fruit", "Apple");
+		hashTableImpl.addElement("Planet", "Earth");
+		hashTableImpl.addElement("Fruit", "Mango");
+		hashTableImpl.addElement("Company", "PayPal");
+		hashTableImpl.addElement("Country", "India");
+		hashTableImpl.addElement("Company", "Amazon");
+		hashTableImpl.addElement("Country", "US");
+		
+		hashTableImpl.displayElements();
+		
+		System.out.println("Number of elements in hashmap: " + hashTableImpl.size());
+	}
 
 }
