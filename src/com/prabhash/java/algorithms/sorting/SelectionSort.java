@@ -16,7 +16,8 @@ public class SelectionSort {
 	public static void selectionSort(int[] array) {
 		
 		int size = array.length;
-		System.out.println("Here is the printout of intermediate sorted elements:");
+		System.out.println("\n\nHere is the printout of intermediate sorted elements:");
+		
 		for(int i = 0; i < size; i++) {
 			for(int j = i + 1; j < size; j++) {
 				if(array[i] > array[j]) {
@@ -39,6 +40,12 @@ public class SelectionSort {
 	}
 	
 	public static void main(String[] args) {
+		
+		System.out.println("Here is original array:");
+		for(int k = 0; k < a.length; k++) {
+			System.out.print(a[k] + " ");
+		}
+		
 		
 		selectionSort(a);
 
