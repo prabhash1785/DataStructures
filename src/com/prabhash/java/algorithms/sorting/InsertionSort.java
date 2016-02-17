@@ -17,7 +17,7 @@ public class InsertionSort {
 	 * Insertion Sort implementation.
 	 * 
 	 * In Insertion sort, there is no swapping done. In this algorithm, left side of array is always sorted and right hand side array is unsorted. We pick one element from right side
-	 * array and insert that in the correct position in left sorted array. This process involves continuously movinf left hand side array elements to one position right until the correct
+	 * array and insert that in the correct position in left sorted array. This process involves continuously moving left hand side array elements to one position right until the correct
 	 * position is determined for the element to be inserted.
 	 * 
 	 * T = O(n ^ 2)
