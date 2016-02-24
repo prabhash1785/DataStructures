@@ -1,4 +1,4 @@
-/**
+/*
  * Amazon Online Interview question for SDE 3 Position.
  * Logic: We can find preorder traversal by using two properties.
  *     1.In BST all nodes left to root are smaller and right to root are greater then root
