@@ -311,7 +311,7 @@ public class BinarySearchTree {
 	}
 	
 	/**
-	 * Find the maxmum node in Binary Tree.
+	 * Find the maximum node in Binary Tree.
 	 * 
 	 * Design:
 	 * In BST, max node is the right most node until it doesn't have any right child nodes.
