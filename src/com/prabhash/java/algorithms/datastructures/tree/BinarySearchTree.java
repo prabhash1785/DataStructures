@@ -116,9 +116,9 @@ public class BinarySearchTree {
 				Node maxLeft = findMax(root.getLeftChild());
 				root.setKey(maxLeft.getKey());
 				root.setLeftChild(deleteNode(root.getLeftChild(), maxLeft.getKey())); //now recursively delete the max left in left sub tree				
-			} else if(root.getLeftChild() != null) {
+			} else if(root.getLeftChild() != null) { // overwrite the node with left sub-tree root
 				root = root.getLeftChild();								
-			} else if (root.getRightChild() != null) {
+			} else if (root.getRightChild() != null) { // overwrite the node with right sub-tree root
 				root = root.getRightChild();								
 			}
 		} else if(data < root.getKey()) { //recursively go left
