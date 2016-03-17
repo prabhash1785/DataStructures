@@ -2,9 +2,21 @@ package com.prabhash.java.algorithms.datastructures.tree;
 
 public class DeepestTreeNodeDeleter {
 
-	private static Node root;
-
-	public static boolean deleteDeepestNode(int data) {
+	/**
+	 * To delete a node from Binary Tree, do following:
+	 * - Find the node to be deleted in the tree. If node not found then just return as node does not exist in tree.
+	 * - Find the right most node (leaf node) in the tree
+	 * - Replace node to be deleted with the right most leaf node
+	 * - Now delete the right most leaf node
+	 * 
+	 * This is not the best algorithm as instead of finding the right most node in the tree, we can replace node to be deleted with the
+	 * left most or right mode node from it's sub-tree. This will be more optimal solution.
+	 * 
+	 * @param root
+	 * @param data
+	 * @return
+	 */
+	public static boolean deleteDeepestNode(Node root, int data) {
 
 		if(root == null) {
 			System.out.println("Tree is empty");
@@ -21,7 +33,7 @@ public class DeepestTreeNodeDeleter {
 		Node deepestNode = findDeepestNode(root);
 		nodeToBeDeleted.data = deepestNode.data;
 
-		return deleteDeepestNodeHelper(deepestNode);
+		return deleteDeepestNodeHelper(root, deepestNode);
 
 	}
 
@@ -51,34 +63,35 @@ public class DeepestTreeNodeDeleter {
 
 	private static Node findDeepestNode(Node root) {
 
-		Node deepestNode = null;
-
-		if(root != null) {
-			deepestNode = root;
-			deepestNode = findDeepestNode(root.left);
-			deepestNode = findDeepestNode(root.right);
+		if(root == null) {
+			return null;
 		}
-
-		return deepestNode;
+		
+		// if root.right is null then this must be the right most node
+		if(root.right == null) {
+			return root;
+		}
+		
+		return findDeepestNode(root.right);
 	}
 
-	private static boolean deleteDeepestNodeHelper(Node node) {
+	private static boolean deleteDeepestNodeHelper(Node root, Node nodeToBeDeleted) {
 
 		if(root == null) {
 			return false;
 		}
 
-		if(root.left == node) {
+		if(root.left == nodeToBeDeleted) {
 			root.left = null;
 			return true;
 		}
 
-		if(root.right == node) {
+		if(root.right == nodeToBeDeleted) {
 			root.right = null;
 			return true;
 		}
 
-		return deleteDeepestNodeHelper(root.left) || deleteDeepestNodeHelper(root.right);
+		return deleteDeepestNodeHelper(root.left, nodeToBeDeleted) || deleteDeepestNodeHelper(root.right, nodeToBeDeleted);
 	}
 	
 	public static class Node {
@@ -94,7 +107,7 @@ public class DeepestTreeNodeDeleter {
 
 	public static void main(String[] args) {
 
-		root = new Node(8);
+		Node root = new Node(8);
 		
 		root.left = new Node(4);
 		root.left.left = new Node(1);
@@ -106,7 +119,7 @@ public class DeepestTreeNodeDeleter {
 
 		int nodeToBeDeleted = 6;
 
-		if(deleteDeepestNode(6)) {
+		if(deleteDeepestNode(root, 6)) {
 			System.out.println(nodeToBeDeleted + " is deleted");
 		} else {
 			System.out.println("Did not find " + nodeToBeDeleted + " in the tree");
