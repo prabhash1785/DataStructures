@@ -379,7 +379,7 @@ public class BinarySearchTree {
 		System.out.println("\n\nMinimum Value in BST: " + tree.getMinimumValue(root));
 		
 		//Delete a node from BST
-		System.out.println("Deleted Node: " + tree.deleteNode(root, 5));
+		System.out.println("Deleted Node: " + tree.deleteNode(root, 50));
 		System.out.println("InOrder of modified tree: ");
 		tree.inOrderTraversal(root); //test the inOrder of tree to make sure desired node is deleted from tree
 	}
