@@ -3,6 +3,50 @@ package com.prabhash.java.algorithms.datastructures.tree;
 public class BinaryTreeNodeDeleter {
 	
 	/**
+	 * Recursively delete a node from Binary Tree. This should be the preferred way to delete node from BT or BST.
+	 * 
+	 * Algorithm:
+	 * - Recursively traverse Binary Tree looking for node to be deleted. At each recursive step, mutate left and right child of node. This will
+	 * enable us to easily delete node when the desired node is found for deletion.
+	 * - If node to be deleted found and it has both left and right child sub-trees, then find the right most leaf node, swap their data
+	 * and then recursively delete right most leaf node
+	 * - If node to be deleted has only left or right child then just overwrite node with their left or right child
+	 * - If node to be deleted is a leaf then just return null, this will recursively leaf when recursive stack backtracks.
+	 * 
+	 * Time Complexity: O(n)
+	 * 
+	 * @param root
+	 * @param data
+	 * @return
+	 */
+	public static Node deleteNodeRecursively(Node root, int data) {
+
+		if(root == null) {
+			return null;
+		}
+
+		if(root.data == data) {
+			
+			if(root.left != null && root.right != null) {
+				Node rightMostNode = findRightMostDeepNode(root.right);
+				root.data = rightMostNode.data;
+				root.right = deleteNodeRecursively(root.right, rightMostNode.data);
+			} else if(root.left != null) {
+				return root.left;
+			} else if(root.right != null) {
+				return root.right;
+			} else {
+				return null;
+			}
+		}
+
+		root.left = deleteNodeRecursively(root.left, data); // Mutate left child from recursion output
+		root.right = deleteNodeRecursively(root.right, data); // Mutate right child from recursion output
+
+		return root; // return the main root of the tree, this is not the deleted node
+	}
+	
+	/**
 	 * To delete a node from Binary Tree, do following:
 	 * - Find the node to be deleted in the tree. If node not found then just return as node does not exist in tree.
 	 * - If node to be deleted has two child nodes then find the rightmost leaf node, swap their data and delete right most leaf node. 
@@ -125,6 +169,14 @@ public class BinaryTreeNodeDeleter {
 		return deleteLeafNode(root.left, nodeToBeDeleted) || deleteLeafNode(root.right, nodeToBeDeleted);
 	}
 	
+	public static void printInOrder(Node root) {
+		if(root != null) {
+			printInOrder(root.left);
+			System.out.print(root.data + " ");
+			printInOrder(root.right);
+		}
+	}
+	
 	public static class Node {
 		
 		private int data;
@@ -143,18 +195,28 @@ public class BinaryTreeNodeDeleter {
 		root.left = new Node(4);
 		root.left.left = new Node(1);
 		root.left.right = new Node(3);
-		// root.left.left.left = new Node(15);
+		root.left.left.left = new Node(20);
 
 		root.right = new Node(6);
 		root.right.left = new Node(7);
 		root.right.right = new Node(9);
 
-		int nodeToBeDeleted = 8;
+		int nodeToBeDeleted = 4;
 		
+		// Test for Iterative method of node deletion
 		if(deleteNode(root, nodeToBeDeleted)) {
 			System.out.println(nodeToBeDeleted + " is deleted");
 		} else {
 			System.out.println("Did not find " + nodeToBeDeleted + " in the tree");
 		}
+		
+		System.out.println("Inorder of tree");
+		printInOrder(root);
+		
+		// Test for recursive method of node deletion
+		root = deleteNodeRecursively(root, nodeToBeDeleted);
+		
+		System.out.println("\nInorder after deletion");
+		printInOrder(root);
 	}
 }
