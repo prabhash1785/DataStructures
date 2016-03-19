@@ -93,16 +93,15 @@ public class BinarySearchTree {
 	}
 	
 	/**
-	 * Program to delete a node from a BST Recursively.
+	 * Program to delete a node from a BST Recursively. This is the preferred way to delete node in a BST.
 	 * 
 	 * Design:
 	 * If root is null -> return null;
+	 * If data == root.data:
+	 * 		- If root has both left and right child then replace root with the value of max node in left subtree and then recursively delete max node in left sub tree
+	 * 		- If root has only one child then replace root with that immediate child
 	 * If data < root.data -> go to left sub-tree
 	 * If data > root.data -> go to right sub-tree
-	 * If data == root.data:
-	 * 		- If root has both left and right child then replace root with the value of max node in left subtree and then recursiveley delete max node in left sub tree
-	 * 		- If root has only one child then replace root with that one child and delete child node
-	 * 
 	 * Time Complexity: O(log n)
 	 *  
 	 */
@@ -115,11 +114,14 @@ public class BinarySearchTree {
 			if(root.getLeftChild() != null && root.getRightChild() != null) {
 				Node maxLeft = findMax(root.getLeftChild());
 				root.setKey(maxLeft.getKey());
+				root.setData(maxLeft.getData());
 				root.setLeftChild(deleteNode(root.getLeftChild(), maxLeft.getKey())); //now recursively delete the max left in left sub tree				
 			} else if(root.getLeftChild() != null) { // overwrite the node with left sub-tree root
-				root = root.getLeftChild();								
+				return root.getLeftChild();								
 			} else if (root.getRightChild() != null) { // overwrite the node with right sub-tree root
-				root = root.getRightChild();								
+				return root.getRightChild();								
+			} else {
+				return null; // return null if you found a leaf node, this will remove node when recursion backtracks to parent node
 			}
 		} else if(data < root.getKey()) { //recursively go left
 			root.setLeftChild(deleteNode(root.getLeftChild(), data));			
@@ -351,6 +353,9 @@ public class BinarySearchTree {
 		Node root = tree.getRoot();
 		System.out.println("Root is : " + root.getData());
 		
+		System.out.println("InOrder of tree: ");
+		tree.inOrderTraversal(root);
+		
 		//Get Height of Tree
 		System.out.println("Height of tree is: " + tree.getHeight(root));
 		
@@ -380,8 +385,10 @@ public class BinarySearchTree {
 		
 		//Delete a node from BST
 		System.out.println("Deleted Node: " + tree.deleteNode(root, 50));
-		System.out.println("InOrder of modified tree: ");
-		tree.inOrderTraversal(root); //test the inOrder of tree to make sure desired node is deleted from tree
+		root = tree.deleteNode(root, 18);
+		
+		System.out.println("\nInOrder of modified tree after deletion of node: ");
+		tree.inOrderTraversal(root);
 	}
 
 }
