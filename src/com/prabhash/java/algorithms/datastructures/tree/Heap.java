@@ -177,13 +177,13 @@ public class Heap {
 		heap.createHeap(heap.heap);
 		
 		System.out.println("\n\nElements in the Max Heap are: ");
-		for(int j = 0; j < heap.heap.length; j++)
+		for(int j = 0; j < heap.heapSize; j++)
 			System.out.print(heap.heap[j] + " ");
 		
 		//Insert new element in heap
-		heap.insertElement(25);
+		heap.insertElement(125);
 		System.out.println("\n\nElements in the Max Heap after adding one more element is: ");
-		for(int j = 0; j < heap.heap.length; j++)
+		for(int j = 0; j < heap.heapSize; j++)
 			System.out.print(heap.heap[j] + " ");
 				
 
