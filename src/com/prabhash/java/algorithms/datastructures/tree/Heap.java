@@ -122,8 +122,8 @@ public class Heap {
 		int root = heap[index];
 		
 		while(index < heapSize / 2) {
-			int leftChild = leftChild(index);
-			int rightChild = rightChild(index);
+			int leftChild = (2 * index)  + 1;
+			int rightChild = leftChild  + 1;
 			
 			if(rightChild < heapSize && heap[leftChild] < heap[rightChild]) {
 				largestChild = rightChild;
@@ -165,7 +165,8 @@ public class Heap {
 		}
 		System.out.println("Element to be heafied: " + heap[heapSize - 1]);
 		//maxHeapify(heap, heapSize - 1);
-		heapTheArray(heapSize - 1);
+		// heapTheArray(0);
+		createHeap(heap);
 	}
 
 	public static void main(String[] args) {
