@@ -91,10 +91,6 @@ public class IntervalTree {
 	
 	public Node findOverlappingIntervalHelper(Node root, Node node) {
 		
-		if(node == null) {
-			throw new IllegalArgumentException();
-		}
-		
 		if(root == null) {
 			return null;
 		}
