@@ -69,6 +69,46 @@ public class IntervalTree {
 	}
 	
 	/**
+	 * Find an overlapping interval.
+	 * 
+	 * Time Complexity: O(log n)
+	 * 
+	 * @param node
+	 * @return
+	 */
+	public Node findOverlappingInterval(Node node) {
+		
+		if(node == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		if(root == null) {
+			return null;
+		}
+		
+		return findOverlappingIntervalHelper(this.root, node);
+	}
+	
+	public Node findOverlappingIntervalHelper(Node root, Node node) {
+		
+		if(node == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		if(root == null) {
+			return null;
+		}
+		
+		if(node.low <= root.high && root.low <= node.high) {
+			return root;
+		} else if(root.left != null && root.left.max >= node.low) {
+			return findOverlappingIntervalHelper(root.left, node);
+		} else {
+			return findOverlappingIntervalHelper(root.right, node);
+		}
+	}
+	
+	/**
 	 * Inorder traversal
 	 * 
 	 * @param root
@@ -129,5 +169,10 @@ public class IntervalTree {
 		final Node root = tree.root;
 		System.out.println("Inorder traversal of tree is:");
 		tree.inOrder(root);
+		
+		// find overlapping interval
+		Node newInterval = new Node(24, 28);
+		Node overlappingInterval = tree.findOverlappingInterval(newInterval);
+		System.out.println("Here is overlapping interval: " + newInterval + " <==> " + overlappingInterval);
 	}
 }
