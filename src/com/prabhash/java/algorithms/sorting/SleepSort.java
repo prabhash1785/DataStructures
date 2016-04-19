@@ -45,7 +45,7 @@ public class SleepSort {
 
 	public static void main(String[] args) {
 		
-		final int[] array = new int[] {5, 3, 10, 7, 20, 15};
+		final int[] array = new int[] {5, 3, 10, 5000, 3000, 7, 20, 15};
 		
 		System.out.println("Original array:");
 		for(int n : array) {
