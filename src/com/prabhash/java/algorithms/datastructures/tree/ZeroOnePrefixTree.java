@@ -1,9 +1,21 @@
 package com.prabhash.java.algorithms.datastructures.tree;
 
+/**
+ * Zero-One Prefix Tree. This could be used to sort numbers if this tree is traversed using
+ * in-order traversal.
+ * 
+ * @author prrathore
+ *
+ */
 public class ZeroOnePrefixTree {
 	
 	private Node root;
 	
+	/**
+	 * Insert Binary representation of number to Prefix tree.
+	 * 
+	 * @param num
+	 */
 	public void insertDataToPrefixTree(int num) {
 		
 		if(root == null) {
@@ -11,8 +23,7 @@ public class ZeroOnePrefixTree {
 		}
 		
 		Node pointer = root;
-		String binaryString = Integer.toBinaryString(num);
-		//System.out.println(num + " => " + binaryString);
+		String binaryString = getBinaryString(num);
 		
 		for(int i = 0; i < binaryString.length(); i++) {
 			byte bit;
@@ -39,6 +50,18 @@ public class ZeroOnePrefixTree {
 				pointer.data = num;
 			}
 		}
+	}
+	
+	private static String getBinaryString(int num) {
+		String binaryString = Integer.toBinaryString(num);
+		int binaryStringLength = binaryString.length();
+		// pad zeroes in front of binary string to make them 32 bit length
+		while(binaryStringLength <= 32) {
+			binaryString = "0" + binaryString;
+			binaryStringLength++;
+		}
+		
+		return binaryString;
 	}
 	
 	public void inOrderTraversal(Node root) {
