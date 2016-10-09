@@ -33,7 +33,7 @@ public class SuffixArray {
 
 	public static void main(String[] args) {
 		
-		final String s = "America";
+		final String s = "aabbabbaab";
 		String[] suffixArray = createSuffixArray(s);
 		
 		System.out.println("\n\nFinal Suffix array:");
