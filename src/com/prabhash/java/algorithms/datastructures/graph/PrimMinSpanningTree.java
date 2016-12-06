@@ -15,6 +15,13 @@ import java.util.Queue;
  */
 public class PrimMinSpanningTree {
 	
+	/**
+	 * Find minimum spanning tree in given graph using Prim's Algorithm.
+	 * 
+	 * @param graph
+	 * @param vertexID
+	 * @return spanningTreeVertices
+	 */
 	public static List<Vertex> findMinimumSpanningTree(int[][] graph, int vertexID) {
 		if(graph == null) {
 			throw new NullPointerException("Graph is null");
@@ -57,6 +64,11 @@ public class PrimMinSpanningTree {
 				if(priorityQueue.contains(vert) && graph[vert.id][v.id] < vert.data) {
 					vert.data = graph[vert.id][v.id];
 					vert.parent = v;
+					
+					// update priority queue ordering by removing this vertex and adding it back so that it gets placed at the
+					// right level based on priority
+					priorityQueue.remove(vert);
+					priorityQueue.add(vert);
 				}
 			}
 		}
@@ -115,7 +127,7 @@ public class PrimMinSpanningTree {
 		@Override
 		public String toString() {
 			return "{id=" + this.id + ", weight=" + this.data + ", parent=" 
-				+ (this.parent == null ? null : this.parent.id);
+				+ (this.parent == null ? null : this.parent.id) + "}";
 		}
 	}
 	
