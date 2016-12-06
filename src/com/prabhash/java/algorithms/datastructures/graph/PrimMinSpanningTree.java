@@ -18,6 +18,15 @@ public class PrimMinSpanningTree {
 	/**
 	 * Find minimum spanning tree in given graph using Prim's Algorithm.
 	 * 
+	 * Maintain a Priority Queue (PQ) of vertices where vertices are prioritized based on weight of vertices. While PQ
+	 * is not empty, extract root of PQ. Add this vertex to output. Get all neighbors of this vertex and for each neighbor, update
+	 * it's parent and weight if this neighbor is still available in PQ and it's stored weight > distance of this vertex from it's
+	 * parent vertex. 
+	 *
+	 * Reference: CLRS Page No # 634
+	 * 
+	 * Time Complexity: O(E logV) where E - Number of Edges and V - Number of Verices
+	 * 
 	 * @param graph
 	 * @param vertexID
 	 * @return spanningTreeVertices
@@ -73,6 +82,11 @@ public class PrimMinSpanningTree {
 			}
 		}
 		
+		// If Graph is disconnected then minimum spanning tree cannot be determined from given vertex
+		if(spanningTreeVertices.size() < graph.length) {
+			throw new RuntimeException("Spanning tree cannot be determine as not all vertices are connected in Graph");
+		}
+		
 		return spanningTreeVertices;
 	}
 	
@@ -88,12 +102,21 @@ public class PrimMinSpanningTree {
 		return list;
 	}
 	
+	/**
+	 * Represents vertex in a Graph
+	 * 
+	 * id - Name of vertex
+	 * data - Weight of this vertex from an arbritrary vertex in Graph. This will be used to hold minimum weight to any arbritrary
+	 * vertex in Graph as an outcome of Minimum Spanning Tree
+	 * parent - Parent of this vertex. Will be used form Minimum Spanning Tree. 
+	 * 
+	 * @author Prabhash Rathore
+	 *
+	 */
 	public static class Vertex {
 		private int id;
 		private int data;
 		private Vertex parent;
-		private Vertex start;
-		private Vertex end;
 		
 		public Vertex(int id) {
 			this.id = id;
