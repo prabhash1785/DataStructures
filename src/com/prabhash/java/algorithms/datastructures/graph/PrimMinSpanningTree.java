@@ -206,6 +206,7 @@ public class PrimMinSpanningTree {
 	}
 	
 	public static void main(String[] args) {
+		// test case 1
 		final int[][] graph = generateGraphUsingMatrixRepresentation();
 		printGraphInMatrixForm(graph);
 		
@@ -213,6 +214,21 @@ public class PrimMinSpanningTree {
 		List<Vertex> minSpanningTree = findMinimumSpanningTree(graph, 0);
 		System.out.println("\nHere are min spanning tree nodes:");
 		for(Vertex v : minSpanningTree) {
+			System.out.println(v);
+		}
+		
+		// test case 2
+		final int[][] graph2 = new int[][] {
+				{0, 2, 0, 6, 0},
+				{2, 0, 3, 8, 5},
+				{0, 3, 0, 0, 7},
+				{6, 8, 0, 0, 9},
+				{0, 5, 7, 9, 0}
+		};
+		// get minimum spanning tree from Graph
+		List<Vertex> minSpanningTree2 = findMinimumSpanningTree(graph2, 0);
+		System.out.println("\nHere are min spanning tree nodes:");
+		for(Vertex v : minSpanningTree2) {
 			System.out.println(v);
 		}
 	}
