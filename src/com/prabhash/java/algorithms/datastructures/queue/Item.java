@@ -29,4 +29,9 @@ public class Item {
 	public void printDescription() {
 		System.out.println("Parent class: " + this.id + " ::: " + this.name);
 	}
+	
+	@Override
+	public String toString() {
+		return "(id=" + this.id + ",name=" + this.name + ")";
+	}
 }
