@@ -1,4 +1,4 @@
 DataStructures
 ==============
 
-This repository has implementation of all different Data Structures, their implemntations and some of the other algorithms.
+This repository has implementation of multiple Data Structures and few other algorithms.
